@@ -1,0 +1,142 @@
+@page {
+  size: A4;
+  margin: 20mm 20mm;
+  background-color: #ffffff;
+}
+
+html {
+  all: unset
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 11pt;
+  line-height: 1.4;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+@media print {
+  body {
+  }
+}
+
+/* Header layout using standard block and text alignment */
+.header-container {
+  width: 100%;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 15px;
+  break-inside: avoid;
+}
+
+.header-row {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.header-row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left-side {
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+
+.right-side {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+.center-block {
+  text-align: center;
+  width: 100%;
+  clear: both;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.exam-title {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+.exam-subtitle {
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Content styling */
+.questions-container {
+  margin-top: 20px;
+}
+
+.question-block {
+  margin-bottom: 25px;
+  break-inside: avoid;
+}
+
+.question-text {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: justify;
+  white-space: pre-wrap; /* Preserves newlines like /n in text */
+}
+
+.answers-list {
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.answer-item {
+  margin-bottom: 6px;
+}
+
+.answer-letter {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.recipe-image {
+  display: block;
+  max-width: 45%;
+  height: auto;
+  margin-top: 15px;
+  break-inside: avoid;
+}
+/* Stopka na dole strony */
+.footer {
+  position: running(footer); /* Wsparcie dla niektórych generatorów PDF */
+  margin-top: 30px;
+  border-top: 1px solid #000000;
+  padding-top: 10px;
+  font-size: 10pt;
+  line-height: 1.3;
+  break-inside: avoid;
+}
+
+.footer-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.footer-table {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.recipe-info {
+  font-style: italic;
+  margin-top: 5px;
+}
