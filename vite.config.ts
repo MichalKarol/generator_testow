@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === "production" ? "/generator_testow/" : "/",
   plugins: [
     tanstackRouter({
       target: "react",
