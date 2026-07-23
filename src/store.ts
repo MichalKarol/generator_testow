@@ -23,6 +23,7 @@ export type Test = {
   title: string;
   subtitle: string;
   createdAt: string;
+  examDate?: string;
   seed: number;
   groups: Group[];
 };

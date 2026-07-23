@@ -8,24 +8,19 @@ export const Route = createFileRoute(
   "/_raw/database/$id/tests/$testId/groups/$groupId/test",
 )({
   component: RouteComponent,
-  validateSearch: (search: Record<string, unknown>) => ({
-    date: search.date as string | undefined,
-  }),
 });
 
 function RouteComponent() {
   const store = useStore();
   const { id, testId, groupId } = Route.useParams();
-  const { date: dateParam } = Route.useSearch();
-
   const databaseId = Number.parseInt(id);
   const testid = Number.parseInt(testId);
   const groupid = Number.parseInt(groupId);
   const test = store.databases[databaseId].tests[testid];
   const group = store.databases[databaseId].tests[testid].groups[groupid];
-
-  // Use provided date param, fallback to test.createdAt
-  const date = dateParam ? new Date(dateParam) : new Date(test.createdAt);
+  
+  const date = test.examDate || test.createdAt;
+  const dateObj = new Date(date);
 
   const maxPoints =
     group.simpleQuestions.length + group.prescriptionQuestions.length * 10;
@@ -54,7 +49,7 @@ function RouteComponent() {
       <div className="header-container">
         <div className="header-row">
           <div className="right-side">
-            Wrocław, {date.toLocaleDateString("pl")}
+            Wrocław, {dateObj.toLocaleDateString("pl")}
           </div>
         </div>
 
