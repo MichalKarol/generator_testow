@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import pdfStyles from "./pdfStyles.css?inline";
 import { useStore } from "@/store";
 import { useEffect } from "react";
+import Prescription from "@/assets/prescription.jpg";
 
 export const Route = createFileRoute(
   "/_raw/database/$id/tests/$testId/groups/$groupId/test",
@@ -99,7 +100,7 @@ function RouteComponent() {
             </div>
             <img
               className="recipe-image"
-              src="/prescription.jpg"
+              src={Prescription}
               alt="Schemat recepty"
             />
           </div>
