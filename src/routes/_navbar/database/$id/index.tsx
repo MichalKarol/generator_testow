@@ -25,8 +25,7 @@ import { generateTestGroups } from "@/utils";
 import { RemoveDialog } from "@/components/RemoveDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const Route = createFileRoute("/_navbar/database/$id/")({
-  component: Database,
+export const Route = createFileRoute("/_navbar/database/$id/")({\n  component: Database,
 });
 
 type DynamicSimpleQuestionDialog = {
@@ -156,7 +155,8 @@ function Database() {
     store.createTest(databaseId, {
       title: formJson.title,
       subtitle: formJson.subtitle,
-      createdAt: formJson.testDate ? new Date(formJson.testDate).toISOString() : new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      examDate: formJson.examDate,
       seed: Math.random(),
       groups: generateTestGroups(
         Number.parseInt(formJson.groups),
@@ -167,14 +167,13 @@ function Database() {
         store.databases[databaseId].prescriptionQuestions,
       ),
     });
-   navigate({
-    to: "/database/$id/tests/$testId",
-    params: {
-      id,
-      testId: store.databases[databaseId].tests.length.toString(),
-    },
-    search: { date: formJson.testDate || new Date().toISOString().split('T')[0] },
-  });
+    navigate({
+      to: "/database/$id/tests/$testId",
+      params: {
+        id,
+        testId: store.databases[databaseId].tests.length.toString(),
+      },
+    });
   };
 
   return (
@@ -433,13 +432,14 @@ function Database() {
             />
             <TextField
               margin="dense"
-              id="testDate"
-              name="testDate"
+              id="examDate"
+              name="examDate"
               label="Data egzaminu"
               type="date"
               defaultValue={new Date().toISOString().split('T')[0]}
               fullWidth
               variant="standard"
+              InputLabelProps={{ shrink: true }}
             />
             <Stack spacing={1} sx={{ mt: 2 }}>
               <NumberField

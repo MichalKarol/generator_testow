@@ -17,7 +17,9 @@ function RouteComponent() {
   const groupid = Number.parseInt(groupId);
   const test = store.databases[databaseId].tests[testid];
   const group = store.databases[databaseId].tests[testid].groups[groupid];
-  const date = new Date(test.createdAt);
+  
+  const date = test.examDate || test.createdAt;
+  const dateObj = new Date(date);
 
   useEffect(() => {
     window.setTimeout(() => {
@@ -41,7 +43,7 @@ function RouteComponent() {
       <div className="header-container">
         <div className="header-row">
           <div className="right-side">
-            Wrocław, {date.toLocaleDateString("pl")}
+            Wrocław, {dateObj.toLocaleDateString("pl")}
           </div>
         </div>
 
