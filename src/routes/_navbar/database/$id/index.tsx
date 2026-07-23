@@ -156,7 +156,7 @@ function Database() {
     store.createTest(databaseId, {
       title: formJson.title,
       subtitle: formJson.subtitle,
-      createdAt: new Date().toISOString(),
+      createdAt: formJson.testDate ? new Date(formJson.testDate).toISOString() : new Date().toISOString(),
       seed: Math.random(),
       groups: generateTestGroups(
         Number.parseInt(formJson.groups),
@@ -167,13 +167,14 @@ function Database() {
         store.databases[databaseId].prescriptionQuestions,
       ),
     });
-    navigate({
-      to: "/database/$id/tests/$testId",
-      params: {
-        id,
-        testId: store.databases[databaseId].tests.length.toString(),
-      },
-    });
+   navigate({
+    to: "/database/$id/tests/$testId",
+    params: {
+      id,
+      testId: store.databases[databaseId].tests.length.toString(),
+    },
+    search: { date: formJson.testDate || new Date().toISOString().split('T')[0] },
+  });
   };
 
   return (
@@ -427,6 +428,16 @@ function Database() {
               label="Podtytuł zestawu"
               placeholder="Pielęgniarstwo 2026"
               type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              margin="dense"
+              id="testDate"
+              name="testDate"
+              label="Data egzaminu"
+              type="date"
+              defaultValue={new Date().toISOString().split('T')[0]}
               fullWidth
               variant="standard"
             />
