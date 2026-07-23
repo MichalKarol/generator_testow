@@ -25,7 +25,8 @@ import { generateTestGroups } from "@/utils";
 import { RemoveDialog } from "@/components/RemoveDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const Route = createFileRoute("/_navbar/database/$id/")({\n  component: Database,
+export const Route = createFileRoute("/_navbar/database/$id/")({
+  component: Database,
 });
 
 type DynamicSimpleQuestionDialog = {
