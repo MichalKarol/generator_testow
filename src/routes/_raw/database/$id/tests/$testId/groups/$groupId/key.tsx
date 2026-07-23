@@ -1,6 +1,7 @@
 import { useStore, type SimpleQuestion } from "@/store";
 import { createFileRoute } from "@tanstack/react-router";
 import pdfStyles from "./pdfStyles.css?inline";
+import { useEffect } from "react";
 
 export const Route = createFileRoute(
   "/_raw/database/$id/tests/$testId/groups/$groupId/key",
@@ -18,10 +19,14 @@ function RouteComponent() {
   const group = store.databases[databaseId].tests[testid].groups[groupid];
   const date = new Date(test.createdAt);
 
-  window.print();
-  window.onfocus = function () {
-    window.close();
-  };
+  useEffect(() => {
+    window.setTimeout(() => {
+      window.print();
+      window.onfocus = function () {
+        window.close();
+      };
+    }, 100);
+  });
 
   const getCorrectAnswer = (question: SimpleQuestion): string => {
     const idx = question.answers.findIndex((answer) => answer.correct);
@@ -59,7 +64,6 @@ function RouteComponent() {
           </div>
         ))}
       </div>
-      
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import pdfStyles from "./pdfStyles.css?inline";
 import { useStore } from "@/store";
+import { useEffect } from "react";
 
 export const Route = createFileRoute(
   "/_raw/database/$id/tests/$testId/groups/$groupId/test",
@@ -28,10 +29,14 @@ function RouteComponent() {
     maxPoints,
   ];
 
-  window.print();
-  window.onfocus = function () {
-    window.close();
-  };
+  useEffect(() => {
+    window.setTimeout(() => {
+      window.print();
+      window.onfocus = function () {
+        window.close();
+      };
+    }, 100);
+  });
 
   return (
     <>
