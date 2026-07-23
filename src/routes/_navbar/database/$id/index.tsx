@@ -440,7 +440,6 @@ function Database() {
               defaultValue={new Date().toISOString().split('T')[0]}
               fullWidth
               variant="standard"
-              InputLabelProps={{ shrink: true }}
             />
             <Stack spacing={1} sx={{ mt: 2 }}>
               <NumberField
