@@ -20,4 +20,12 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  build: {
+    rolldownOptions: {
+      input: {
+        main: "./index.html",
+        gherrorhandler: "./404.html",
+      },
+    },
+  },
 });
